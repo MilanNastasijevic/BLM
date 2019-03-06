@@ -7,7 +7,7 @@ import time
 
 
 driver = webdriver.Chrome()
-driver.get('https://www.ebay.com/sch/rijindoujin0673/m.html?_nkw=&_armrs=1&_ipg=&_from=&rt=nc&LH_Auction=1')
+driver.get('https://www.ebay.com/sch/liliang1987one/m.html?_nkw=&_armrs=1&_ipg=&_from=&rt=nc&LH_Auction=1')
 driver.set_window_size(1440,900)
 time.sleep(5)
 driver.find_element(By.CSS_SELECTOR,'#gh-ug > a').click()

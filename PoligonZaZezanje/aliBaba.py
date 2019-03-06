@@ -25,7 +25,7 @@ items = driver.find_elements(By.CSS_SELECTOR,'li.sresult.lvresult.clearfix.li h3
 duzina_liste_itema = len(items)
 print('lista ima ' + str(duzina_liste_itema) +' clanova')
 wait = WebDriverWait(driver, 5)
-for i in range(37,duzina_liste_itema):
+for i in range(52,duzina_liste_itema):
 
     print('upravo biduje za ' + str(i) + ' clan')
     time.sleep(5)
