@@ -11,9 +11,12 @@ from selenium.webdriver.support import expected_conditions as EC
 def pageSol(driver,duzina_liste_itema, wait, n):
     print(n)
     pageLength = len(forPageLength)-4
-    print(pageLength)
+    print('ovo je page length ' + str(pageLength))
+    time.sleep(1)
     for p in range(1, pageLength):
         singlePageLocator = '#Pagination > tbody > tr > td.pages > a:nth-child(' + str(p) + ')'
+        time.sleep(1)
+        print('ovo je single page locator ' + str(singlePageLocator))
         singlePage(duzina_liste_itema=duzina_liste_itema, driver=driver, wait=wait, n=n)
         driver.find_element(By.CSS_SELECTOR, singlePageLocator).click()
 
@@ -21,9 +24,14 @@ def pageSol(driver,duzina_liste_itema, wait, n):
 def singlePage(duzina_liste_itema, driver, wait, n):
     for i in range(n, duzina_liste_itema):
         print('upravo biduje za ' + str(i) + ' clan')
-        time.sleep(5)
-        element = driver.find_elements(By.CSS_SELECTOR, 'li.sresult.lvresult.clearfix.li h3.lvtitle')[i].click()
-        time.sleep(2)
+        element = wait.until(EC.element_to_be_clickable((By.CSS_SELECTOR, 'li.sresult.lvresult.clearfix.li h3.lvtitle')))
+        element1 = driver.find_elements(By.CSS_SELECTOR, 'li.sresult.lvresult.clearfix.li h3.lvtitle')[i].click()
+        element1
+        try:
+            element1
+        except:
+            pass
+        # time.sleep(2)
         curBidString = driver.find_element(By.CSS_SELECTOR, currentBidAmount).text
         curBid = float(curBidString[4:])
         print('ovo je trenutan bid na elementu ' + str(curBid))
@@ -80,13 +88,18 @@ def clickOnBid(wait,driver):
         print('h')
     except:
         pass
-    time.sleep(3)
-    try:
-        driver.execute_script("('div.clzBtn').click()")
+    time.sleep(5)
+    if driver.find_element(By.CSS_SELECTOR, "#vi_oly_powerBid > div > div.clz > div > div").is_displayed():
+        driver.find_element(By.CSS_SELECTOR, "#vi_oly_powerBid > div > div.clz > div > div").click()
         print('modal za poboljsanje ponude se pojavio')
-    except:
+    else:
         pass
         print('modal za poboljsanje ponude nije se pojavio')
+    if driver.find_element(By.CSS_SELECTOR, '#w1-5-_msg').is_displayed():
+        print('vidi se text da si highest bidder na ovom itemu')
+        driver.execute_script('document.querySelector("#smtBackToAnchor").click()')
+    else:
+        pass
     try:
         driver.find_element(By.CSS_SELECTOR,'#vi_oly_powerBid > div > div.clz > div > div').click()
         print('modal za poboljsanje ponude se pojavio')

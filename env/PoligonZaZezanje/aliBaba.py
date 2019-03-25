@@ -4,7 +4,7 @@ from selenium.webdriver.common.desired_capabilities import DesiredCapabilities
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 import time
-from joblib import Parallel,delayed
+# from joblib import Parallel,delayed
 from locators import *
 from methods import *
 
@@ -31,7 +31,7 @@ def sellerScript(link):
     print('lista ima ' + str(duzina_liste_itema) + ' clanova')
     wait = WebDriverWait(driver, 5)
     # pageBid(duzina_liste_itema=duzina_liste_itema, driver=driver, wait=wait)
-    startFrom = 15
+    startFrom = 0
     pageSol(driver=driver, duzina_liste_itema=duzina_liste_itema, wait=wait, n=startFrom)
 
 
