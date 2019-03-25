@@ -21,9 +21,13 @@ def pageSol(driver,duzina_liste_itema, wait, n):
 def singlePage(duzina_liste_itema, driver, wait, n):
     for i in range(n, duzina_liste_itema):
         print('upravo biduje za ' + str(i) + ' clan')
+        element = driver.find_elements(By.CSS_SELECTOR, 'li.sresult.lvresult.clearfix.li h3.lvtitle')[i]
+        element.click()
+        try:
+            element.click()
+        except:
+            pass
         time.sleep(5)
-        element = driver.find_elements(By.CSS_SELECTOR, 'li.sresult.lvresult.clearfix.li h3.lvtitle')[i].click()
-        time.sleep(2)
         curBidString = driver.find_element(By.CSS_SELECTOR, currentBidAmount).text
         curBid = float(curBidString[4:])
         print('ovo je trenutan bid na elementu ' + str(curBid))
@@ -80,7 +84,7 @@ def clickOnBid(wait,driver):
         print('h')
     except:
         pass
-    time.sleep(3)
+    time.sleep(5)
     try:
         driver.execute_script("('div.clzBtn').click()")
         print('modal za poboljsanje ponude se pojavio')
@@ -94,3 +98,6 @@ def clickOnBid(wait,driver):
     except:
         print('modal za poboljsanje ponude nije se pojavio')
         pass
+    time.sleep(3)
+    driver.back()
+    time.sleep(2)
