@@ -72,7 +72,7 @@ class pageForMethods():
         print(lengthPages)
         startOnPage = math.floor((startItem / 25) + 1)
         forItem = round(startItem / 25 - 1)#ovde ti prikazuje -1 kad je pocetni 0
-        
+
         startItemOnPage = (startItem - forItem * 25)
         print('startOnPage ' + str(startOnPage))
         print('forItem ' + str(forItem))
@@ -134,23 +134,4 @@ class tryToBid():
             driver.find_element(By.CSS_SELECTOR, '#w1-33-_reviewBidSec_btn').click()
             print('h')
         except:
-            pass
-        time.sleep(5)
-        if driver.find_element(By.CSS_SELECTOR, "#vi_oly_powerBid > div > div.clz > div > div").is_displayed():
-            driver.find_element(By.CSS_SELECTOR, "#vi_oly_powerBid > div > div.clz > div > div").click()
-            print('modal za poboljsanje ponude se pojavio')
-        else:
-            pass
-            print('modal za poboljsanje ponude nije se pojavio')
-        if driver.find_element(By.CSS_SELECTOR, '#w1-5-_msg').is_displayed():
-            print('vidi se text da si highest bidder na ovom itemu')
-            driver.execute_script('document.querySelector("#smtBackToAnchor").click()')
-        else:
-            pass
-        try:
-            driver.find_element(By.CSS_SELECTOR, '#vi_oly_powerBid > div > div.clz > div > div').click()
-            print('modal za poboljsanje ponude se pojavio')
-            print('f')
-        except:
-            print('modal za poboljsanje ponude nije se pojavio')
             pass
